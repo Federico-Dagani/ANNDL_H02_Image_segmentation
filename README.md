@@ -28,3 +28,9 @@ Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, o
 Model: 32,64,128,256 + 512 using transpose convolution instead of upsampling\
 Score: 0.47759 on Kaggle and 47.35 validation Mean Intersection Over Union \
 /kaggle/working/submission_241202_103806.csv
+
+## Unet with addition (file marsadjusted512add)
+Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal and label adjustment (removal of inconsistencies in the labels) \
+Model: 32,64,128,256 + 512 using addition instead of concatenation\
+Score: 0.47636 on Kaggle and 47.10 validation Mean Intersection Over Union \
+/kaggle/working/submission_241202_110358.csv
