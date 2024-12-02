@@ -13,6 +13,12 @@ Score: 0.46983 on Kaggle and 45.81 validation Mean Intersection Over Union \
 
 ## Unet with 32/64/128/256 bottleneck (file marsadjusted256)
 Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal and label adjustment (removal of inconsistencies in the labels) \
-Model: (prof model) 32,64,128 + 256 \
-Score: 0.4808 on Kaggle and 48.24 validation Mean Intersection Over Union \
+Model: 32,64,128 + 256 \
+Score: 0.48088 on Kaggle and 48.24 validation Mean Intersection Over Union \
 /kaggle/working/submission_241202_093600.csv
+
+## Unet with 32/64/128/256/512 bottleneck (file marsadjusted512)
+Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal and label adjustment (removal of inconsistencies in the labels) \
+Model: 32,64,128,256 + 512 \
+Score: 0.48756 on Kaggle and 47.98 validation Mean Intersection Over Union \
+/kaggle/working/submission_241202_100314.csv
