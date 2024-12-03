@@ -46,3 +46,9 @@ Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, o
 Model: 32,64,128,256,512 + 1024 \
 Score: 0.48448 on Kaggle and 47.85 validation Mean Intersection Over Union \
 /kaggle/working/submission_241202_112820.csv
+
+## Unet with 32/64/128/256/512 bottleneck + basic augm
+Preprocessing: Normalisation (/255 --> anche per TEST SET!!), basic augmentation (flip, brightness(+/-0.15) and contrast (+/-0.5)), only alien removal and label adjustment (removal of inconsistencies in the labels)  \
+Model: 32,64,128,256 + 512 \
+Score: 0.46906 on Kaggle\
+/kaggle/working/submission_241203_155546.csv
