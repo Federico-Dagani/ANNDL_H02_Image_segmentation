@@ -53,7 +53,7 @@ Model: 32,64,128,256 + 512 \
 Score: 0.46906 on Kaggle\
 /kaggle/working/submission_241203_155546.csv
 
-## Unet with 32/64/128/256/512 bottleneck + geometric augm (file unet-512-densely-connected)
+## Unet with 32/64/128/256/512 bottleneck + geometric augm
 Preprocessing: Normalisation (/255 --> anche per TEST SET!!), geometric augmentation (flip and rotation(+/180°)), only alien removal and label adjustment (removal of inconsistencies in the labels)  \
 Model: 32,64,128,256 + 512 \
 Score: 0.49359 on Kaggle and 48.79 validation Mean Intersection Over Union\
@@ -61,7 +61,7 @@ Score: 0.49359 on Kaggle and 48.79 validation Mean Intersection Over Union\
 
 ## Unet++ (file marsadjustedunet++)
 
-## Unet (densely connected) with 32/64/128/256/512 bottleneck (file Unet-512 (Densely connected))
+## Unet (densely connected) with 32/64/128/256/512 bottleneck (file unet-512-densely-connected))
 Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal \
 Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers \
 Score: 0.51146 on Kaggle and 48.73 validation Mean Intersection Over Union \
