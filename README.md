@@ -63,4 +63,4 @@ Score: 0.49359 on Kaggle and 48.79 validation Mean Intersection Over Union\
 Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal \
 Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers \
 Score: 0.51146 on Kaggle and 48.73 validation Mean Intersection Over Union \
-~~
+/kaggle/working/submission_UNet_48.73.csv
