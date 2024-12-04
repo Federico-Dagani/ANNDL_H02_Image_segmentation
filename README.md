@@ -59,6 +59,8 @@ Model: 32,64,128,256 + 512 \
 Score: 0.49359 on Kaggle and 48.79 validation Mean Intersection Over Union\
 /kaggle/working/submission_241203_164321.csv
 
+## Unet++ (file marsadjustedUnet++)
+
 ## Unet (densely connected) with 32/64/128/256/512 bottleneck (file Unet-512 (Densely connected))
 Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal \
 Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers \
