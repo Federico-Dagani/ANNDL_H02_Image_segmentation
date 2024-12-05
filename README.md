@@ -78,3 +78,9 @@ Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, o
 Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers, class weights added and **higher patience (30) for dyn. learning rate** \
 Score: 0.54698 on Kaggle and 51.91 validation Mean Intersection Over Union \
 submission_UNet_51.91.csv
+
+## Unet with 32/64/128/256/512 (file multidynamicloss512)
+Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, no label adjustment \
+Model: 32,64,128,256 + 512. Added MultiLoss (SparseCategoricalCrossEntropy + Dice + Boundary) dynamically weighted (0.4 increasing, 0.4 decreasing, 0.2 increading - then normalised
+to sum up to 1). SCEE is also invoked with class weights \
+Score: 0.50375 and 0.52 on validation MIoU --> improvement wrt 0.48 of file (marsadjusted512) \
