@@ -75,6 +75,6 @@ submission_UNet_49.76.csv
 
 ## Unet (densely connected) with 32/64/128/256/512 bottleneck (file unet-512-densely-connected)
 Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, no label adjustment \
-Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers, class weights added and **higher patience for dyn. learning rate** \
+Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers, class weights added and **higher patience (30) for dyn. learning rate** \
 Score: 0.5064 on Kaggle and 51.91 validation Mean Intersection Over Union \
 submission_UNet_51.91.csv
