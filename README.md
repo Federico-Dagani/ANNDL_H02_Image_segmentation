@@ -84,3 +84,11 @@ Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, o
 Model: 32,64,128,256 + 512. Added MultiLoss (SparseCategoricalCrossEntropy + Dice + Boundary) dynamically weighted (0.4 increasing, 0.4 decreasing, 0.2 increading - then normalised
 to sum up to 1). SCEE is also invoked with class weights \
 Score: 0.50375 and 0.52 on validation MIoU --> improvement wrt 0.48 of file (marsadjusted512) \
+
+## DualUnet (file dualUnet.ipynb)
+Score: 0.54698 on Kaggle and 48.76 validation Mean Intersection Over Union \
+submission_UNet_48.76.csv
+
+## DualUnet with Dropout 0.2 (file DualNetDropout.ipynb)
+Score: 0.54698 on Kaggle and 48.60 validation Mean Intersection Over Union \
+submission_UNet_48.6.csv
