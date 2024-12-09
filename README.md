@@ -92,3 +92,9 @@ submission_UNet_48.76.csv
 ## DualUnet with Dropout 0.2 (file DualNetDropout.ipynb)
 Score: 0.54698 on Kaggle and 48.60 validation Mean Intersection Over Union \
 submission_UNet_48.6.csv
+
+## DualNet Gio (file IDU-MDL-49)
+Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, no label adjustment \
+Model: First Unet 8->128 with ASPP + ResnEt Encoder 64->1024 with ASPP. Output U1 (O1) MULTIPLIED with input and goes to U2. Output U2 (O2) concatenated to O1 as output. Skip connection also between Encoder1 and Decoder2 (skip connection NO weighted with learnable params)\
+Multi Dynamic loss function with increasing SCCE and Boundary, decreasing Dice + class weigths (NO limited). 
+Score: 49.5 (no tested on kaggle due to a loading problem... sorry)
