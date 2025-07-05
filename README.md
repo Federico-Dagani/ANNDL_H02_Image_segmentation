@@ -1,100 +1,99 @@
-# ANNDL_H02
+# 🪐 Mars Terrain Image Segmentation
 
-## Baseline (file baseline10, Kaggle version 10)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, NO modifiche fede \
-Model: (prof model) 32,64 + 128 \
-Score: 0.46627 on Kaggle and 46.72 validation Mean Intersection Over Union
+> Image segmentation of Mars surface images using advanced U-Net-based architectures.  
+> **Course:** Artificial Neural Networks and Deep Learning  
+> **Team:** Per un pugno di neuroni | Giorgio Algisi, Simone Bresciani, Ilaria Campestrini, Federico Dagani
 
-## Baseline + label adjustment (file marsadjusted)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal and label adjustment (removal of inconsistencies in the labels) \
-Model: (prof model) 32,64 + 128 \
-Score: 0.46983 on Kaggle and 45.81 validation Mean Intersection Over Union \
-/kaggle/working/submission_241201_214359.csv
+---
 
-## Unet with 32/64/128/256 bottleneck (file marsadjusted256)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal and label adjustment (removal of inconsistencies in the labels) \
-Model: 32,64,128 + 256 \
-Score: 0.48088 on Kaggle and 48.24 validation Mean Intersection Over Union \
-/kaggle/working/submission_241202_093600.csv
+## 📂 Project Overview
 
-## Unet with 32/64/128/256/512 bottleneck (file marsadjusted512)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal \
-Model: 32,64,128,256 + 512 \
-Score: 0.47244 on Kaggle and 47.~~ validation Mean Intersection Over Union \
-/kaggle/working/submission_241202_213214.csv
+This project addresses an **image segmentation task** to detect 5 terrain classes in Mars grayscale images using deep learning.
 
-## Unet with 32/64/128/256/512 bottleneck (file marsadjusted512)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal and label adjustment (removal of inconsistencies in the labels)  \
-Model: 32,64,128,256 + 512 \
-Score: 0.48756 on Kaggle and 47.98 validation Mean Intersection Over Union \
-/kaggle/working/submission_241202_100314.csv
+### ⚠️ Problem Statement
 
-## Unet with transpose convolution (file marsadjusted512conv)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation only alien removal and label adjustment (removal of inconsistencies in the labels) \
-Model: 32,64,128,256 + 512 using transpose convolution instead of upsampling\
-Score: 0.47759 on Kaggle and 47.35 validation Mean Intersection Over Union \
-/kaggle/working/submission_241202_103806.csv
+- **Task:** Segmentation of 64x128 grayscale images into 5 classes:
+  - Background (excluded in evaluation), Soil, Bedrock, Sand, Big Rock
+- **Dataset:**
+  - **Training set:** 2615 image-mask pairs
+  - **Test set:** 10022 images
+- **Challenges:**
+  - **Severe class imbalance**, especially for Big Rock (1/154 ratio)
+  - Poor quality masks with rough, inaccurate labels
+  - Background class exclusion from evaluation metrics
 
-## Unet with addition (file marsadjusted512add)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal only alien removal and label adjustment (removal of inconsistencies in the labels) \
-Model: 32,64,128,256 + 512 using addition instead of concatenation\
-Score: 0.47636 on Kaggle and 47.10 validation Mean Intersection Over Union \
-/kaggle/working/submission_241202_110358.csv
+---
 
-## Unet with 32/64/128/256/512/1024 bottleneck (file marsadjusted1024)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal and label adjustment (removal of inconsistencies in the labels) \
-Model: 32,64,128,256,512 + 1024 \
-Score: 0.48448 on Kaggle and 47.85 validation Mean Intersection Over Union \
-/kaggle/working/submission_241202_112820.csv
+## 🔍 Data Preparation
 
-## Unet with 32/64/128/256/512 bottleneck + basic augm
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), basic augmentation (flip, brightness(+/-0.15) and contrast (+/-0.5)), only alien removal and label adjustment (removal of inconsistencies in the labels)  \
-Model: 32,64,128,256 + 512 \
-Score: 0.46906 on Kaggle\
-/kaggle/working/submission_241203_155546.csv
+- **Outlier removal:**
+  - Detected 110 alien-face outliers using label hash comparison (hash-based image approach failed due to alien variability)
+- **Preprocessing:**
+  - Normalisation to [0,1]
+  - **Data augmentation:** Horizontal flips only (other geometric or brightness augmentations reduced performance)
+- **Class imbalance handling:**
+  - Calculated class weights based on distribution  
+  - Reduced Big Rock weight from ~154 to **10** to avoid over-prediction bias
 
-## Unet with 32/64/128/256/512 bottleneck + geometric augm
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), geometric augmentation (flip and rotation(+/180°)), only alien removal and label adjustment (removal of inconsistencies in the labels)  \
-Model: 32,64,128,256 + 512 \
-Score: 0.49359 on Kaggle and 48.79 validation Mean Intersection Over Union\
-/kaggle/working/submission_241203_164321.csv
+---
 
-## Unet++ (file marsadjustedunet++)
+## 🏗️ Model Development
 
-## Unet (densely connected) with 32/64/128/256/512 bottleneck (file unet-512-densely-connected)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, no label adjustment \
-Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers \
-Score: 0.51146 on Kaggle and 48.73 validation Mean Intersection Over Union \
-/kaggle/working/submission_UNet_48.73.csv
+### ✅ Architectural Experiments
 
-## Unet (densely connected) with 32/64/128/256/512 bottleneck (no file)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, no label adjustment \
-Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers, **class weights added**\
-Score: 0.5064 on Kaggle and 49.76 validation Mean Intersection Over Union \
-submission_UNet_49.76.csv
+| Model           | Validation Mean IoU | Kaggle Score |
+|-----------------|---------------------|--------------|
+| Simple U-Net    | 51.85 ± 0.6         | 52.45 ± 0.4  |
+| Dense U-Net     | 68.60 ± 0.9         | 70.02 ± 0.2  |
+| Dual U-Net      | 60.64 ± 1.0         | 58.20 ± 0.5  |
+| Parallel U-Net  | 62.65 ± 0.3         | 61.13 ± 0.7  |
+| U-Net 3+        | 64.23 ± 0.2         | 65.79 ± 0.1  |
+| ResNet++        | 59.59 ± 0.4         | 58.95 ± 0.2  |
 
-## Unet (densely connected) with 32/64/128/256/512 bottleneck (file unet-512-densely-connected-balanced)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, no label adjustment \
-Model: 32,64,128,256 + 512. I connected all the upsampling layers to all the downsampling layers, class weights added and **higher patience (30) for dyn. learning rate** \
-Score: 0.54698 on Kaggle and 51.91 validation Mean Intersection Over Union \
-submission_UNet_51.91.csv
+- **Key strategies explored:**
+  - Dense skip connections (significant performance boost)
+  - Dual and Parallel U-Net architectures for multi-scale feature extraction
+  - Bottleneck enhancements:
+    - **Transformer block** (for global context)  
+    - **ASPP (Atrous Spatial Pyramid Pooling)** for multi-scale receptive fields
 
-## Unet with 32/64/128/256/512 (file multidynamicloss512)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, no label adjustment \
-Model: 32,64,128,256 + 512. Added MultiLoss (SparseCategoricalCrossEntropy + Dice + Boundary) dynamically weighted (0.4 increasing, 0.4 decreasing, 0.2 increading - then normalised
-to sum up to 1). SCEE is also invoked with class weights \
-Score: 0.50375 and 0.52 on validation MIoU --> improvement wrt 0.48 of file (marsadjusted512) \
+---
 
-## DualUnet (file dualUnet.ipynb)
-Score: 0.54698 on Kaggle and 48.76 validation Mean Intersection Over Union \
-submission_UNet_48.76.csv
+### 🔧 Final Model
 
-## DualUnet with Dropout 0.2 (file DualNetDropout.ipynb)
-Score: 0.54698 on Kaggle and 48.60 validation Mean Intersection Over Union \
-submission_UNet_48.6.csv
+- **Architecture:**
+  - **Single U-Net with Dense skip connections**
+  - Encoder: 4 layers (32, 64, 128, 256 filters)
+  - Bottleneck: 512 filters with **Transformer + ASPP block**
+  - Decoder: 4 layers mirroring encoder
+- **Loss function:**
+  - Customized Sparse Categorical Crossentropy with class weights (Background excluded from computation)
+- **Training:**
+  - **Learning rate scheduler:** ReduceLROnPlateau (LR reduced by factor 0.1 if Mean IoU didn’t improve for 40 epochs)
+  - **Early stopping:** Patience=50 (validation loss monitored)
+  - Initial LR=1e-3
 
-## DualNet Gio (file IDU-MDL-49)
-Preprocessing: Normalisation (/255 --> anche per TEST SET!!), NO augmentation, only alien removal, no label adjustment \
-Model: First Unet 8->128 with ASPP + ResnEt Encoder 64->1024 with ASPP. Output U1 (O1) MULTIPLIED with input and goes to U2. Output U2 (O2) concatenated to O1 as output. Skip connection also between Encoder1 and Decoder2 (skip connection NO weighted with learnable params)\
-Multi Dynamic loss function with increasing SCCE and Boundary, decreasing Dice + class weigths (NO limited). 
-Score: 49.5 (no tested on kaggle due to a loading problem... sorry)
+---
+
+## 📊 Results
+
+- **Final Kaggle score:** **70.633**
+- **Observations:**
+  - Simpler architectures outperformed complex SotA models designed for medical segmentation tasks
+  - Mars terrain problem required **pattern recognition** rather than fine boundary detection
+
+---
+
+## 💡 Future Work
+
+- Explore **CosineDecayRestarts** learning rate scheduler to avoid local minima  
+- Develop and test **dynamic loss functions** combining Crossentropy, Dice, and Boundary losses
+
+---
+
+## 🚀 Usage
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/mars-segmentation.git
+   cd mars-segmentation
